@@ -8,18 +8,23 @@ public class PlayerAttackHandler : MonoBehaviour {
     public float range;
     public GameObject collidedObject;
     private RaycastHit2D rayhit;
+    private GameObject child;
 
 	// Use this for initialization
 	void Start () {
         damage = 7f;
-        range = 3f;
+        range = 0.87f;
+        child = transform.Find("Slash Attack").gameObject;
+        child.SetActive(false);
 	}
 	
 	// Update is called once per frame
 	void Update () {
         if (Input.GetButtonDown("Attack")) {
+            StartCoroutine(HandleAttack());
+            Debug.Log("Attacking!");
             // Detect enemy with linecast
-            rayhit = Physics2D.Linecast(transform.position, transform.position + new Vector3(range, 0, 0), 1 << 9);
+            rayhit = Physics2D.Linecast(transform.position, transform.position + new Vector3(range * transform.localScale.x, 0, 0), 1 << 11);
             if (rayhit) {
                 collidedObject = rayhit.collider.gameObject;
                 collidedObject.GetComponent<Health>().value -= damage;
@@ -29,11 +34,19 @@ public class PlayerAttackHandler : MonoBehaviour {
             else {
                 rayhit = new RaycastHit2D();
             }
-            
         }
 	}
+
+    private IEnumerator HandleAttack() {
+        child.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        child.SetActive(false);
+    }
+
     void OnDrawGizmos() {
         Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position, transform.position + new Vector3(range, 0, 0));
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, 5f);
     }
 }
