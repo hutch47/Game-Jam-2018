@@ -47,4 +47,11 @@ public class Snail : MonoBehaviour {
         
     }
 
+    public void OnDrawGizmos()
+    {
+        Vector3 centre = transform.position;
+        Gizmos.color = Color.red;
+        Gizmos.DrawCube(centre, new Vector3());
+    }
+
 }
