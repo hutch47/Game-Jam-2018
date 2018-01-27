@@ -15,19 +15,24 @@ public class BirdCharacter : MonoBehaviour {
 	public float maxVelocity = 5f;
 	public float moveForce = 50f;
 
+	public AudioClip jumpSound;
+	private AudioSource source;
+
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
 		sr = GetComponentInChildren<SpriteRenderer>();
+		source = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		grounded = Physics2D.Linecast (transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
 
-		if (Input.GetButtonDown("Jump") && grounded) 
+		if (Input.GetButtonDown ("Jump") && grounded) {
 			jump = true;
-		
+			source.PlayOneShot (jumpSound, 1.0f);
+		}
 	}
 
 	void FixedUpdate () {
