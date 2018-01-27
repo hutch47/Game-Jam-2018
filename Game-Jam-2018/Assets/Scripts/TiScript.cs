@@ -7,8 +7,10 @@ public class TiScript : MonoBehaviour {
     public Vector3 pos;
     public Rigidbody2D rb; //and again, whatever you want to call it
 
-    private bool falling = false;
+    public bool falling = false;
     private bool jumping = false;
+
+    public int health = 30;
 
     // Use this for initialization
     void Start () {
@@ -19,7 +21,8 @@ public class TiScript : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        print(Physics.Raycast(transform.position, -Vector3.up, 20f));
+
+        //print(health);
         if (Input.GetButton("Horizontal") && Input.GetAxisRaw("Horizontal") > 0)
         {
             Vector3 position = this.transform.position;
@@ -45,13 +48,6 @@ public class TiScript : MonoBehaviour {
             {
                 rb.AddForce(new Vector2(0, 9), ForceMode2D.Impulse);
             }
-        }
-
-        if (rb.velocity.magnitude == 0)
-        {
-            print("Yeahhh");
-            falling = false;
-            jumping = false;
         }
     }
 }
