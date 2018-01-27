@@ -195,14 +195,18 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 1216, y: -1536}
-      - {x: 1216, y: -960}
-      - {x: 896, y: -960}
-      - {x: 896, y: -1536}
-    - - {x: 640, y: -1536}
-      - {x: 640, y: -1216}
-      - {x: 0, y: -1216}
-      - {x: 0, y: -1536}
+    - - {x: 12.16, y: -15.36}
+      - {x: 12.16, y: -9.599999}
+      - {x: 8.96, y: -9.599999}
+      - {x: 8.96, y: -15.36}
+    - - {x: 0, y: -15.36}
+      - {x: 6.4, y: -15.36}
+      - {x: 6.4, y: -12.16}
+      - {x: 5.74, y: -12.16}
+      - {x: 5.74, y: -12.04}
+      - {x: 5.12, y: -12.04}
+      - {x: 5.12, y: -12.16}
+      - {x: 0, y: -12.16}
 --- !u!114 &114646559587258980
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -223,7 +227,7 @@ MonoBehaviour:
   NumTilesHigh: 24
   TileWidth: 64
   TileHeight: 64
-  ExportScale: 1
+  ExportScale: 0.01
   MapWidthInPixels: 1536
   MapHeightInPixels: 1536
   BackgroundColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
