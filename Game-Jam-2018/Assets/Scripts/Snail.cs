@@ -9,8 +9,10 @@ public class Snail : MonoBehaviour {
     public Vector3 pos;
     public Rigidbody2D rb; //and again, whatever you want to call it
 
-    public bool falling = false;
-    private bool jumping = false;
+    //public bool falling = false;
+    public bool left = true;
+
+    private float movespeed = 0.02f;
 
     public int health = 30;
 
@@ -31,8 +33,18 @@ public class Snail : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         Vector3 position = this.transform.position;
-        position.x -= 0.03f;
+        if (left)
+        {
+            position.x -= movespeed;
+        }
+        else
+        {
+            position.x += movespeed;
+        }
         this.transform.position = position;
         transform.localScale = new Vector3(relScaleX, relScaleY, 1);
+        
+        
     }
+
 }
