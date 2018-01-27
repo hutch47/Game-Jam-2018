@@ -449,7 +449,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 960023485}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.4, y: -0.55, z: 0}
+  m_LocalPosition: {x: -3.4, y: -0.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2147244008}
@@ -1393,8 +1393,9 @@ MonoBehaviour:
   groundCheck: {fileID: 960023486}
   jumpForce: 1000
   maxVelocity: 5
-  moveForce: 75
+  moveForce: 50
   jumpSound: {fileID: 8300000, guid: 61b41e54fccd14a9d9464c91e414ba25, type: 3}
+  jumpLandSound: {fileID: 8300000, guid: b745c44628a784be487e66b1e12ec24e, type: 3}
 --- !u!61 &2147244011
 BoxCollider2D:
   m_ObjectHideFlags: 0
