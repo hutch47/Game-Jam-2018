@@ -8,6 +8,8 @@ public class BirdCharacter : MonoBehaviour {
 
 	public Transform groundCheck;
 	private bool grounded = false;
+	private bool justGrounded = false;
+
 	private Rigidbody2D rb;
 	private SpriteRenderer sr;
 
@@ -16,6 +18,8 @@ public class BirdCharacter : MonoBehaviour {
 	public float moveForce = 50f;
 
 	public AudioClip jumpSound;
+	public AudioClip jumpLandSound;
+	private bool jumpLandSoundPlayed = false;
 	private AudioSource source;
 
 	// Use this for initialization
@@ -27,7 +31,23 @@ public class BirdCharacter : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		grounded = Physics2D.Linecast (transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
+
+		if (Physics2D.Linecast (transform.position, groundCheck.position, 1 << LayerMask.NameToLayer ("Ground"))) {
+			grounded = true;
+		} else {
+			grounded = false;
+		}
+
+		// If we hit the ground fast enough, play a sound effect
+		if (!jumpLandSoundPlayed && grounded && rb.velocity.y < -20f) {
+			source.PlayOneShot (jumpLandSound, 1.0f);
+			jumpLandSoundPlayed = true;
+		} 
+
+		if (rb.velocity.y >= -20f && !grounded) {
+			// Allow landing sound to be played again if we are no longer grounded
+			jumpLandSoundPlayed = false;
+		}
 
 		if (Input.GetButtonDown ("Jump") && grounded) {
 			jump = true;
