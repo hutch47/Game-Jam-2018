@@ -16,4 +16,9 @@
    <object id="1" x="0" y="0" width="64" height="64"/>
   </objectgroup>
  </tile>
+ <tile id="3">
+  <objectgroup draworder="index">
+   <object id="2" x="0" y="52" width="62.6667" height="12"/>
+  </objectgroup>
+ </tile>
 </tileset>
