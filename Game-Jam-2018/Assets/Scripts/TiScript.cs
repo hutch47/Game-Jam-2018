@@ -33,14 +33,14 @@ public class TiScript : MonoBehaviour {
             Vector3 position = this.transform.position;
             position.x += 0.05f;
             this.transform.position = position;
-            transform.localScale = new Vector3(-relScaleX, relScaleY, 1);
+            transform.localScale = new Vector3(relScaleX, relScaleY, 1);
         }
         else if (Input.GetButton("Horizontal") && Input.GetAxisRaw("Horizontal") < 0)
         {
             Vector3 position = this.transform.position;
             position.x -= 0.05f;
             this.transform.position = position;
-            transform.localScale = new Vector3(relScaleX, relScaleY, 1);
+            transform.localScale = new Vector3(-relScaleX, relScaleY, 1);
         }
 
         if (Input.GetButton("Jump"))

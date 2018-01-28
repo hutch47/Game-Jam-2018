@@ -24,14 +24,14 @@ public class Player : MonoBehaviour {
     void UpdateHealthBar() {
         HpBar.fillAmount = hp.value / hp.max;
     }
-    public void OnHit() {
+    public void OnHit(GameObject source, float dmg) {
+        hp.value -= dmg;
         UpdateHealthBar();
     }
 
 
     /*
      TO DO:
-        Detect damage
         Encase HP with a setter/getter
      */
 }

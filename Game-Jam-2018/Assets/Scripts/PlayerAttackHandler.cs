@@ -13,7 +13,7 @@ public class PlayerAttackHandler : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         damage = 7f;
-        range = 0.87f;
+        range = 4.20f;
         child = transform.Find("Slash Attack").gameObject;
         child.SetActive(false);
 	}
@@ -27,9 +27,8 @@ public class PlayerAttackHandler : MonoBehaviour {
             rayhit = Physics2D.Linecast(transform.position, transform.position + new Vector3(range * transform.localScale.x, 0, 0), 1 << 11);
             if (rayhit) {
                 collidedObject = rayhit.collider.gameObject;
-                collidedObject.GetComponent<Health>().value -= damage;
-                collidedObject.GetComponent<Rigidbody2D>().AddForce(transform.right * range * 500);
-                collidedObject.GetComponent<Enemy>().OnHit(gameObject);
+                collidedObject.GetComponent<Rigidbody2D>().AddForce(transform.right * transform.localScale.x * range * 500);
+                collidedObject.GetComponent<Enemy>().OnHit(gameObject, damage);
             }
             else {
                 rayhit = new RaycastHit2D();
@@ -45,8 +44,6 @@ public class PlayerAttackHandler : MonoBehaviour {
 
     void OnDrawGizmos() {
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, transform.position + new Vector3(range, 0, 0));
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, 5f);
+        Gizmos.DrawLine(transform.position, transform.position + new Vector3(range * transform.localScale.x, 0, 0));
     }
 }
