@@ -16,10 +16,12 @@ public class Snail : MonoBehaviour {
 
     public float damage = 10;
 
-    public int health = 30;
+    //public int health = 30;
 
     public float relScaleX;
     public float relScaleY;
+
+    public bool moveChange;
 
     // Use this for initialization
     void Start()
@@ -29,12 +31,18 @@ public class Snail : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         relScaleX = transform.localScale.x;
         relScaleY = transform.localScale.y;
+        moveChange = false;
     }
 
 
     // Update is called once per frame
     void Update () {
+        if (moveChange) {
+            transform.localScale = new Vector3(transform.localScale.x * -1, 1, 1);
+            moveChange = false;
+        }
         Vector3 position = this.transform.position;
+        transform.localScale = new Vector3(relScaleX, 1, 1);
         if (left)
         {
             position.x -= movespeed;

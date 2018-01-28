@@ -35,11 +35,11 @@ public class TiScript : MonoBehaviour {
             Vector3 position = this.transform.position;
             if (Input.GetButton("Fire3"))
             {
-                position.x += 0.05f * runModifier;
+                position.x += 0.1f * runModifier;
             }
             else
             {
-                position.x += 0.05f;
+                position.x += 0.1f;
             }
             this.transform.position = position;
             transform.localScale = new Vector3(relScaleX, relScaleY, 1);
@@ -49,11 +49,11 @@ public class TiScript : MonoBehaviour {
             Vector3 position = this.transform.position;
             if (Input.GetButton("Fire3"))
             {
-                position.x -= 0.05f * runModifier;
+                position.x -= 0.1f * runModifier;
             }
             else
             {
-                position.x -= 0.05f;
+                position.x -= 0.1f;
             }
             this.transform.position = position;
             transform.localScale = new Vector3(-relScaleX, relScaleY, 1);

@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour {
         partsCollected = 0;
         for (int i = 0; i < partsTotal; i++) {
             partClone = Instantiate(partPrefab, new Vector2(Random.Range(-playArea.x/2, playArea.x/2), Random.Range(transform.position.y-playArea.y/2, transform.position.y + playArea.y/2)), partPrefab.transform.rotation, gameObject.transform);
-            partClone.GetComponent<Part>().partnum = i;
+            //partClone.GetComponent<Part>().partnum = i;
         }
 	}
 	

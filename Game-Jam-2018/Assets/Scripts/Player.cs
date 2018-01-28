@@ -23,6 +23,7 @@ public class Player : MonoBehaviour {
 
     void UpdateHealthBar() {
         HpBar.fillAmount = hp.value / hp.max;
+        Debug.Log("Ow");
     }
     public void OnHit(GameObject source, float dmg) {
         hp.value -= dmg;

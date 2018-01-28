@@ -15,15 +15,16 @@ public class SnailFrontCollider : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        print(transform.position);
+        //print(transform.position);
         Collider2D[] hitColliders = Physics2D.OverlapBoxAll(transform.position - new Vector3(0, 0.80f / relScale, 0), new Vector2(0.5f / relScale, 1.7f / relScale), Vector2.Angle(Vector2.zero, transform.position));
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        gameObject.GetComponentInParent<Snail>().moveChange = true;
         gameObject.GetComponentInParent<Snail>().left = !gameObject.GetComponentInParent<Snail>().left;
         gameObject.GetComponentInParent<Snail>().transform.Rotate(0, 180, 0);
-        if (collision.gameObject.tag == "player")
+        if (collision.gameObject.tag == "Player")
         {
             collision.gameObject.GetComponent<Player>().OnHit(gameObject.GetComponentInParent<Snail>().gameObject, gameObject.GetComponentInParent<Snail>().damage);
             if (gameObject.GetComponentInParent<Snail>().left)

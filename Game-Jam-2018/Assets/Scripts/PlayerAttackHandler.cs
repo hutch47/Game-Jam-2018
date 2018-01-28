@@ -10,6 +10,9 @@ public class PlayerAttackHandler : MonoBehaviour {
     private RaycastHit2D rayhit;
     private GameObject child;
 
+    public AudioSource source;
+    public AudioClip attackSound;
+
 	// Use this for initialization
 	void Start () {
         damage = 7f;
@@ -21,6 +24,7 @@ public class PlayerAttackHandler : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if (Input.GetButtonDown("Attack")) {
+            source.PlayOneShot(attackSound, 1.0f);
             StartCoroutine(HandleAttack());
             Debug.Log("Attacking!");
             // Detect enemy with linecast
