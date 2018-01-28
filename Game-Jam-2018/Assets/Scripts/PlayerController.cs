@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BirdCharacter : MonoBehaviour {
+public class PlayerController : MonoBehaviour {
 
 	private bool jump = false;
 
@@ -19,6 +19,7 @@ public class BirdCharacter : MonoBehaviour {
 
 	public AudioClip jumpSound;
 	public AudioClip jumpLandSound;
+	public float jumpLandSoundMinVelocity = 10.0f;
 	private bool jumpLandSoundPlayed = false;
 	private AudioSource source;
 
@@ -28,7 +29,7 @@ public class BirdCharacter : MonoBehaviour {
 		sr = GetComponentInChildren<SpriteRenderer>();
 		source = GetComponent<AudioSource>();
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 
@@ -39,12 +40,12 @@ public class BirdCharacter : MonoBehaviour {
 		}
 
 		// If we hit the ground fast enough, play a sound effect
-		if (!jumpLandSoundPlayed && grounded && rb.velocity.y < -20f) {
+		if (!jumpLandSoundPlayed && grounded && rb.velocity.y < jumpLandSoundMinVelocity) {
 			source.PlayOneShot (jumpLandSound, 1.0f);
 			jumpLandSoundPlayed = true;
 		} 
 
-		if (rb.velocity.y >= -20f && !grounded) {
+		if (rb.velocity.y >= jumpLandSoundMinVelocity && !grounded) {
 			// Allow landing sound to be played again if we are no longer grounded
 			jumpLandSoundPlayed = false;
 		}
@@ -71,7 +72,7 @@ public class BirdCharacter : MonoBehaviour {
 			if (sr.flipX) 
 				sr.flipX = false;
 		}
-			
+
 		// Ensure we don't go too fast
 		if(Mathf.Abs(rb.velocity.x) > maxVelocity)
 			rb.velocity = new Vector2 (Mathf.Sign(rb.velocity.x) * maxVelocity, rb.velocity.y);

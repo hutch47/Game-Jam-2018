@@ -15,6 +15,8 @@ public class TiScript : MonoBehaviour {
     public float relScaleX;
     public float relScaleY;
 
+    private int runModifier = 2;
+
     // Use this for initialization
     void Start () {
         pos = transform.position;
@@ -31,14 +33,28 @@ public class TiScript : MonoBehaviour {
         if (Input.GetButton("Horizontal") && Input.GetAxisRaw("Horizontal") > 0)
         {
             Vector3 position = this.transform.position;
-            position.x += 0.05f;
+            if (Input.GetButton("Fire3"))
+            {
+                position.x += 0.05f * runModifier;
+            }
+            else
+            {
+                position.x += 0.05f;
+            }
             this.transform.position = position;
             transform.localScale = new Vector3(relScaleX, relScaleY, 1);
         }
         else if (Input.GetButton("Horizontal") && Input.GetAxisRaw("Horizontal") < 0)
         {
             Vector3 position = this.transform.position;
-            position.x -= 0.05f;
+            if (Input.GetButton("Fire3"))
+            {
+                position.x -= 0.05f * runModifier;
+            }
+            else
+            {
+                position.x -= 0.05f;
+            }
             this.transform.position = position;
             transform.localScale = new Vector3(-relScaleX, relScaleY, 1);
         }
