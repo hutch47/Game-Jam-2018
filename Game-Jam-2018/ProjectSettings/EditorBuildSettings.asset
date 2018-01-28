@@ -4,4 +4,16 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 6e7d62f113a062c4bb9dbc3c633c7c75
+  - enabled: 1
+    path: Assets/Scenes/Ded.unity
+    guid: 47d59643524eea743b4250bb68eb4e26
+  - enabled: 1
+    path: Assets/Scenes/ConradScene2.unity
+    guid: 67f39941b1b514e4ea73515b133fcf19
+  - enabled: 1
+    path: Assets/Scenes/Win.unity
+    guid: ab2bc125ce9d3684ea191df1edfe5f93

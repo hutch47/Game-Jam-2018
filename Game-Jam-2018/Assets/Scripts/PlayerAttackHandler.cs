@@ -16,7 +16,7 @@ public class PlayerAttackHandler : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         damage = 7f;
-        range = 4.20f;
+        range = 5f;
         child = transform.Find("Slash Attack").gameObject;
         child.SetActive(false);
 	}

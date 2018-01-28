@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour {
 
@@ -28,6 +29,9 @@ public class Player : MonoBehaviour {
     public void OnHit(GameObject source, float dmg) {
         hp.value -= dmg;
         UpdateHealthBar();
+        if (hp.value <= 0) {
+            SceneManager.LoadScene("Scenes/Ded", LoadSceneMode.Single);
+        }
     }
 
 

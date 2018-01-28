@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -33,8 +34,9 @@ public class GameManager : MonoBehaviour {
 
     public void collectPart() {
         partsCollected++;
-        if (partsCollected == partsTotal) {
+        if (partsCollected == 6) {
             gameWon = true;
+            SceneManager.LoadScene("Scenes/Win", LoadSceneMode.Single);
             // Run game won scene
         }
     }
