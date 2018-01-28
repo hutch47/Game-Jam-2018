@@ -14,6 +14,8 @@ public class Snail : MonoBehaviour {
 
     private float movespeed = 0.02f;
 
+    public float damage = 10;
+
     public int health = 30;
 
     public float relScaleX;

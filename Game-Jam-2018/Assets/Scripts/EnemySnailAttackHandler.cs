@@ -20,7 +20,7 @@ public class EnemySnailAttackHandler : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    rayhit = Physics2D.Linecast(transform.position, transform.position + new Vector3(range * transform.localScale.x, 0, 0), )
+        rayhit = Physics2D.Linecast(transform.position, transform.position + new Vector3(range * transform.localScale.x, 0, 0) );
 	}
 
     private IEnumerator HandleAttack()

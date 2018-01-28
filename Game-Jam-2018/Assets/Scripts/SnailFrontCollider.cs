@@ -21,9 +21,21 @@ public class SnailFrontCollider : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //if (collision.otherCollider.Equals(gameObject.GetComponentInParent<Snail>().collider))
         gameObject.GetComponentInParent<Snail>().left = !gameObject.GetComponentInParent<Snail>().left;
         gameObject.GetComponentInParent<Snail>().transform.Rotate(0, 180, 0);
+        if (collision.gameObject.tag == "player")
+        {
+            collision.gameObject.GetComponent<Player>().OnHit(gameObject.GetComponentInParent<Snail>().gameObject, gameObject.GetComponentInParent<Snail>().damage);
+            if (gameObject.GetComponentInParent<Snail>().left)
+            {
+                collision.gameObject.GetComponent<Player>().GetComponent<ConstantForce2D>().force = new Vector2(-10f, 0);
+            }
+            else
+            {
+                collision.gameObject.GetComponent<Player>().GetComponent<ConstantForce2D>().force = new Vector2(10f, 0);
+            }
+            
+        }
     }
 
     
