@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour {
 	private bool justGrounded = false;
 
 	private Rigidbody2D rb;
-	private SpriteRenderer sr;
 
 	public float jumpForce = 1000f;
 	public float maxVelocity = 5f;
@@ -26,7 +25,6 @@ public class PlayerController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
-		sr = GetComponentInChildren<SpriteRenderer>();
 		source = GetComponent<AudioSource>();
 	}
 
@@ -59,18 +57,24 @@ public class PlayerController : MonoBehaviour {
 	void FixedUpdate () {
 		float h = Input.GetAxis("Horizontal");
 
+
+		bool flipped = transform.localScale.x < 0;
+
+
 		if (h < 0) {
 			rb.AddForce (Vector2.left * moveForce); // Move left
 
 			// Face left
-			if (!sr.flipX) 
-				sr.flipX = true;
+			if (!flipped) {
+				transform.localScale = new Vector3(transform.localScale.x*-1, transform.localScale.y, transform.localScale.z);
+			}
 		} else if (h > 0) {
 			rb.AddForce (Vector2.right * moveForce); // Move right
 
 			// Face right
-			if (sr.flipX) 
-				sr.flipX = false;
+			if (flipped) {
+				transform.localScale = new Vector3(transform.localScale.x*-1, transform.localScale.y, transform.localScale.z);
+			}
 		}
 
 		// Ensure we don't go too fast
