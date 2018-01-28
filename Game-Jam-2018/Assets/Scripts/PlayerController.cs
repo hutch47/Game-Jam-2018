@@ -12,11 +12,18 @@ public class PlayerController : MonoBehaviour {
 
 	private Rigidbody2D rb;
 
-	public float jumpForce = 1000f;
+
+    public float relScaleX;
+    public float relScaleY;
+
+    public float speed = 0.2f;
+
+    public float jumpForce = 1000f;
 	public float maxVelocity = 5f;
 	public float moveForce = 50f;
+    public int runModifier = 2;
 
-	public AudioClip jumpSound;
+    public AudioClip jumpSound;
 	public AudioClip jumpLandSound;
 	public float jumpLandSoundMinVelocity = 10.0f;
 	private bool jumpLandSoundPlayed = false;
@@ -26,7 +33,9 @@ public class PlayerController : MonoBehaviour {
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
 		source = GetComponent<AudioSource>();
-	}
+        relScaleX = transform.localScale.x;
+        relScaleY = transform.localScale.y;
+    }
 
 	// Update is called once per frame
 	void Update () {
@@ -61,27 +70,40 @@ public class PlayerController : MonoBehaviour {
 		bool flipped = transform.localScale.x < 0;
 
 
-		if (h < 0) {
-			rb.AddForce (Vector2.left * moveForce); // Move left
+        if (Input.GetButton("Horizontal") && Input.GetAxisRaw("Horizontal") > 0)
+        {
+            Vector3 position = this.transform.position;
+            if (Input.GetButton("Fire3"))
+            {
+                position.x += speed * runModifier;
+            }
+            else
+            {
+                position.x += speed;
+            }
+            this.transform.position = position;
+            transform.localScale = new Vector3(relScaleX, relScaleY, 1);
+        }
+        else if (Input.GetButton("Horizontal") && Input.GetAxisRaw("Horizontal") < 0)
+        {
+            Vector3 position = this.transform.position;
+            if (Input.GetButton("Fire3"))
+            {
+                position.x -= speed * runModifier;
+            }
+            else
+            {
+                position.x -= speed;
+            }
+            this.transform.position = position;
+            transform.localScale = new Vector3(-relScaleX, relScaleY, 1);
+        }
 
-			// Face left
-			if (!flipped) {
-				transform.localScale = new Vector3(transform.localScale.x*-1, transform.localScale.y, transform.localScale.z);
-			}
-		} else if (h > 0) {
-			rb.AddForce (Vector2.right * moveForce); // Move right
-
-			// Face right
-			if (flipped) {
-				transform.localScale = new Vector3(transform.localScale.x*-1, transform.localScale.y, transform.localScale.z);
-			}
-		}
-
-		// Ensure we don't go too fast
-		if(Mathf.Abs(rb.velocity.x) > maxVelocity)
+        // Ensure we don't go too fast
+        /*if(Mathf.Abs(rb.velocity.x) > maxVelocity)
 			rb.velocity = new Vector2 (Mathf.Sign(rb.velocity.x) * maxVelocity, rb.velocity.y);
-
-		if (jump) {
+            */
+        if (jump) {
 			rb.AddForce(new Vector2(0f, jumpForce));
 			jump = false;
 		}

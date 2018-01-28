@@ -7,6 +7,7 @@ public class LaunchButton : MonoBehaviour {
     public Rigidbody2D rb;
 	public AudioClip sound;
 	private AudioSource source;
+    public Vector2 force = new Vector2(0, 50);
 
 	// Use this for initialization
 	void Start () {
@@ -24,7 +25,7 @@ public class LaunchButton : MonoBehaviour {
         if (collision.gameObject.tag == "Player")
         {
             rb = collision.gameObject.GetComponent<Rigidbody2D>();
-            rb.AddForce(new Vector2(0, 10), ForceMode2D.Impulse);
+            rb.AddForce(force, ForceMode2D.Impulse);
 
 			// Play launch button sound 
 			source.PlayOneShot(sound, 1.0f);
