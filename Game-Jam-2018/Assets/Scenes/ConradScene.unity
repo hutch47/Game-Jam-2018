@@ -245,12 +245,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eddd9b6a9b5a68d40888ad8c59dcb9cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jump: 0
   groundCheck: {fileID: 0}
+  grounded: 0
+  justGrounded: 0
+  rb: {fileID: 0}
+  sr: {fileID: 0}
   jumpForce: 1000
   maxVelocity: 5
   moveForce: 50
   jumpSound: {fileID: 0}
   jumpLandSound: {fileID: 0}
+  jumpLandSoundPlayed: 0
+  source: {fileID: 0}
 --- !u!1 &736966439
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,6 +271,8 @@ GameObject:
   - component: {fileID: 736966444}
   - component: {fileID: 736966442}
   - component: {fileID: 736966445}
+  - component: {fileID: 736966447}
+  - component: {fileID: 736966446}
   m_Layer: 0
   m_Name: tie
   m_TagString: Player
@@ -326,6 +335,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 1923388202}
+  - {fileID: 935137112}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -360,7 +370,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 736966439}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b4b03a050c2860244a09aa07b56f04cc, type: 3}
   m_Name: 
@@ -406,6 +416,104 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &736966446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 736966439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cafdf779b01de43baaf1b7a7f17e7cca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundCheck: {fileID: 935137112}
+  jumpForce: 500
+  maxVelocity: 5
+  moveForce: 20
+  jumpSound: {fileID: 8300000, guid: 44058e3740ce7fd4cae66ec053c9f383, type: 3}
+  jumpLandSound: {fileID: 8300000, guid: f5f25fa275a16124c8331ffa5df2463c, type: 3}
+  jumpLandSoundMinVelocity: -7
+--- !u!82 &736966447
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 736966439}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!1001 &774083259
 Prefab:
   m_ObjectHideFlags: 0
@@ -453,9 +561,53 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 0.01
       objectReference: {fileID: 0}
+    - target: {fileID: 1270577717406108, guid: f7afe686e976b1f4792623feb5389e2c, type: 2}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1800716433575438, guid: f7afe686e976b1f4792623feb5389e2c, type: 2}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1453980031852778, guid: f7afe686e976b1f4792623feb5389e2c, type: 2}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1632408894755654, guid: f7afe686e976b1f4792623feb5389e2c, type: 2}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f7afe686e976b1f4792623feb5389e2c, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &935137111
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 935137112}
+  m_Layer: 0
+  m_Name: ground_check
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &935137112
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 935137111}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: -0.37, z: 0.052120864}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_Children: []
+  m_Father: {fileID: 736966441}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &963909735
 Prefab:
   m_ObjectHideFlags: 0
@@ -506,6 +658,22 @@ Prefab:
     - target: {fileID: 1270577717406108, guid: f7afe686e976b1f4792623feb5389e2c, type: 2}
       propertyPath: m_Name
       value: TestMap (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1632408894755654, guid: f7afe686e976b1f4792623feb5389e2c, type: 2}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1270577717406108, guid: f7afe686e976b1f4792623feb5389e2c, type: 2}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1800716433575438, guid: f7afe686e976b1f4792623feb5389e2c, type: 2}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1453980031852778, guid: f7afe686e976b1f4792623feb5389e2c, type: 2}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f7afe686e976b1f4792623feb5389e2c, type: 2}
