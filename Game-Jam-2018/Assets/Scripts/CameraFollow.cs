@@ -16,6 +16,8 @@ public class CameraFollow : MonoBehaviour {
 	void Start() {
 		sr = target.GetComponentInChildren<SpriteRenderer>();
 		flip_state_last = sr.flipX;
+
+		transform.position = target.transform.position;
 	}
 
 	void LateUpdate() {
