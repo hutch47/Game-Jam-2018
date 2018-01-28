@@ -23,7 +23,7 @@ public class SnailFrontCollider : MonoBehaviour {
     {
         //if (collision.otherCollider.Equals(gameObject.GetComponentInParent<Snail>().collider))
         gameObject.GetComponentInParent<Snail>().left = !gameObject.GetComponentInParent<Snail>().left;
-        gameObject.GetComponentInParent<Snail>().transform.localScale = new Vector3(-0.5f, 0.5f);
+        gameObject.GetComponentInParent<Snail>().transform.Rotate(0, 180, 0);
     }
 
     
